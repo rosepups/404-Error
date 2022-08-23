@@ -230,12 +230,12 @@ local_vqe_result = local_vqe_groundstate_solver.solve(problem)`
     "Energy:",
     np.real(local_vqe_result.eigenenergies + local_vqe_result.nuclear_repulsion_energy)[0],)`
     
-    Output:
-    ![image](https://user-images.githubusercontent.com/53739684/186069130-f057b72a-26a9-4b02-b4a2-62b24dc07dcb.png)
+ Output:
+ ![image](https://user-images.githubusercontent.com/53739684/186069130-f057b72a-26a9-4b02-b4a2-62b24dc07dcb.png)
     
-    Now the code is ran on a real backend. In this code it was run on the ibm_oslo. However, the code was also investigated on multiple different backends.
+ Now the code is ran on a real backend. In this code it was run on the ibm_oslo. However, the code was also investigated on multiple different backends.
     
-   ` from qiskit import IBMQ
+   `from qiskit import IBMQ
 
 IBMQ.load_account()
 provider = IBMQ.get_provider(hub='ibm-q')  # replace by your runtime provider
