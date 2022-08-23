@@ -183,4 +183,80 @@ The next step after that was using actual backends. Because the backends were li
 `qubit_converter = QubitConverter(ParityMapper(), two_qubit_reduction=True)'
 
 
+Numpy was used to calculate the reference result.
+`import numpy as np`
 
+`target_energy = np.real(np_result.eigenenergies + np_result.nuclear_repulsion_energy)[0]
+print("Energy:", target_energy)`
+
+Output: ![image](https://user-images.githubusercontent.com/53739684/186067264-80dcf412-c034-476b-99c8-d3dee92f0326.png)
+
+The ansatz was then created using the circuit library EfficientSU2. Different ansatz were investigated including TwoLocal and PauliGate
+
+`from qiskit.circuit.library import EfficientSU2`
+
+`ansatz = EfficientSU2(num_qubits=4, reps=1, entanglement="linear", insert_barriers=True)
+ansatz.decompose().draw("mpl", style="iqx")`
+
+Output:
+![image](https://user-images.githubusercontent.com/53739684/186067348-8c5e78d8-f182-45dc-b7dc-b315eaf4ed1d.png)
+
+The optimised using the SPSA
+
+`from qiskit.algorithms.optimizers import SPSA
+
+optimizer = SPSA(maxiter=100)
+
+np.random.seed(5)  # fix seed for reproducibility
+initial_point = np.random.random(ansatz.num_parameters)`
+
+Used the local simulator to run VQE
+
+`from qiskit.providers.basicaer import QasmSimulatorPy  # local simulator
+from qiskit.algorithms import VQE
+
+local_vqe = VQE(
+    ansatz=ansatz,
+    optimizer=optimizer,
+    initial_point=initial_point,
+    quantum_instance=QasmSimulatorPy(),
+)
+
+local_vqe_groundstate_solver = GroundStateEigensolver(qubit_converter, local_vqe)
+
+local_vqe_result = local_vqe_groundstate_solver.solve(problem)`
+
+`print(
+    "Energy:",
+    np.real(local_vqe_result.eigenenergies + local_vqe_result.nuclear_repulsion_energy)[0],)`
+    
+    Output:
+    ![image](https://user-images.githubusercontent.com/53739684/186069130-f057b72a-26a9-4b02-b4a2-62b24dc07dcb.png)
+    
+    Now the code is ran on a real backend. In this code it was run on the ibm_oslo. However, the code was also investigated on multiple different backends.
+    
+   ` from qiskit import IBMQ
+
+IBMQ.load_account()
+provider = IBMQ.get_provider(hub='ibm-q')  # replace by your runtime provider
+
+backend = provider.get_backend("ibm_oslo")  # select a backend that supports the runtime`
+
+`from qiskit_nature.runtime import VQEClient
+runtime_vqe = VQEClient(
+    ansatz=ansatz,
+    optimizer=optimizer,
+    initial_point=initial_point,
+    provider=provider,
+    backend=backend,
+    shots=1024,
+    measurement_error_mitigation=True,
+)  # use a complete measurement fitter for error mitigation`
+
+The job was then submitted:
+
+`runtime_vqe_groundstate_solver = GroundStateEigensolver(qubit_converter, runtime_vqe)
+runtime_vqe_result = runtime_vqe_groundstate_solver.solve(problem)`
+
+Output:
+![image](https://user-images.githubusercontent.com/53739684/186069487-94ee5f61-5cf4-4934-a447-f0a18ff318cf.png)
