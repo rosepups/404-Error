@@ -260,3 +260,119 @@ runtime_vqe_result = runtime_vqe_groundstate_solver.solve(problem)`
 
 Output:
 ![image](https://user-images.githubusercontent.com/53739684/186069487-94ee5f61-5cf4-4934-a447-f0a18ff318cf.png)
+
+
+# Compare different BackEnds with the NumPy reference value
+
+Reference Value:
+![image](https://user-images.githubusercontent.com/53739684/186071772-d50d9cb0-7c50-4ba6-8a0d-5a7d3ac764fa.png)
+
+Oslo:
+![image](https://user-images.githubusercontent.com/53739684/186071888-88858971-0bd7-48c9-9ce2-fc3d84154fd0.png)
+
+Quito:
+![image](https://user-images.githubusercontent.com/53739684/186072014-575355c6-cf2d-459e-bbff-fd2ae354e462.png)
+
+Nairobi:
+![image](https://user-images.githubusercontent.com/53739684/186072138-6d654c95-0a05-47b0-8024-75af83a0c2ae.png)
+
+Lima:
+![image](https://user-images.githubusercontent.com/53739684/186072183-73ab5faf-95fe-4ece-83e4-2864892ee2c3.png)
+
+# Look at different ansatz and the impact of results on local VQE
+
+Reference value: 
+![image](https://user-images.githubusercontent.com/53739684/186073639-23db5e35-d422-477b-8a9d-c0905fd60ed1.png)
+
+RealAmplitude1:
+
+`from qiskit.circuit.library import EfficientSU2
+from qiskit.circuit.library import TwoLocal
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.circuit.library import EvolvedOperatorAnsatz`
+
+`ansatz = RealAmplitudes(4, reps=2)
+ansatz.decompose().draw("mpl", style="iqx")`
+
+![image](https://user-images.githubusercontent.com/53739684/186073972-82074235-0acc-46e5-b349-78491b07b38a.png)
+![image](https://user-images.githubusercontent.com/53739684/186074016-150587dd-20f0-415b-b8cf-14a2bbede2ac.png)
+
+Real Amplitude2:
+`from qiskit.circuit.library import EfficientSU2
+from qiskit.circuit.library import TwoLocal
+from qiskit.circuit.library import RealAmplitudes`
+
+
+`#ansatz = EfficientSU2(4, su2_gates=['ry','cx', 'cz'], entanglement='circular', reps=1)
+ansatz = RealAmplitudes(4, reps=1, entanglement='circular', insert_barriers=True)
+ansatz.decompose().draw("mpl", style="iqx")`
+
+![image](https://user-images.githubusercontent.com/53739684/186073749-cc6c20fe-53ad-40d8-b247-c4017a5de44d.png)
+![image](https://user-images.githubusercontent.com/53739684/186073775-d07cb163-c3e2-478d-a0ff-6043a8143649.png)
+
+
+EssentialSU2_1:
+`ansatz = EfficientSU2(4, su2_gates=['rx', 'y'], entanglement='circular', reps=1)
+ansatz.decompose().draw("mpl", style="iqx")`
+
+![image](https://user-images.githubusercontent.com/53739684/186074196-6f5cb097-ad0f-4345-a65f-e14ed1c0a705.png)
+![image](https://user-images.githubusercontent.com/53739684/186074223-23231628-9919-46df-8297-cf259f87fb54.png)
+
+EssentialSU2_2:
+`ansatz = EfficientSU2(4, su2_gates=['rx', 'cx'], entanglement='circular', reps=1)
+ansatz.decompose().draw("mpl", style="iqx")`
+![image](https://user-images.githubusercontent.com/53739684/186074269-3dd68906-8b5a-4c7d-842c-db299b238b89.png)
+![image](https://user-images.githubusercontent.com/53739684/186074287-b911134d-b0e7-473b-8d2c-d7cf92d0efb6.png)
+
+EssentialSU2_3:
+`ansatz = EfficientSU2(4, su2_gates=['rz','ry', 'cx'], entanglement='circular', reps=1)
+ansatz.decompose().draw("mpl", style="iqx")'
+![image](https://user-images.githubusercontent.com/53739684/186074329-c76dbee7-20a6-4a6e-9358-897999bed8d4.png)
+![image](https://user-images.githubusercontent.com/53739684/186074352-466c3db6-caac-4d08-a552-b27bea6c9ca8.png)
+
+EssentialSU2_4:
+`ansatz = EfficientSU2(4, su2_gates=['ry','cx', 'cz'], entanglement='circular', reps=1)
+ansatz.decompose().draw("mpl", style="iqx")`
+![image](https://user-images.githubusercontent.com/53739684/186074394-a7a46e52-728a-4fb5-975a-e7f726b86a69.png)
+![image](https://user-images.githubusercontent.com/53739684/186074414-a640a80a-226f-43c4-8eb5-ed5377ee38d7.png)
+
+TwoLocal_1:
+`ansatz = TwoLocal(4, 'ry', 'cx', 'linear', reps=2, insert_barriers=True)
+ansatz.decompose().draw("mpl", style="iqx")`
+![image](https://user-images.githubusercontent.com/53739684/186074479-55783901-cf3e-46d8-bbdd-42518e60d798.png)
+![image](https://user-images.githubusercontent.com/53739684/186074495-caaef07d-7498-4484-ac36-80dd7b692ba8.png)
+
+TwoLocal_2:
+`ansatz=TwoLocal(4, ['ry','rz'], 'cz', 'full', reps=1, insert_barriers=True)
+ansatz.decompose().draw("mpl", style="iqx")`
+![image](https://user-images.githubusercontent.com/53739684/186074536-bf0bed1a-78d6-4e82-b2c3-0acd92b757cd.png)
+![image](https://user-images.githubusercontent.com/53739684/186074553-8cab9e71-31f9-4ebf-a186-f00fed0b902b.png)
+
+TwoLocal_3:
+`ansatz=TwoLocal(4, ['ry','rz'], 'cz', 'linear', reps=1, insert_barriers=True)
+ansatz.decompose().draw("mpl", style="iqx")`
+![image](https://user-images.githubusercontent.com/53739684/186074596-b3a0c529-1814-47de-8413-04ac4f4e7b1e.png)
+![image](https://user-images.githubusercontent.com/53739684/186074613-09ba3c57-a283-49cc-bf39-b10c483929c8.png)
+
+
+TwoLocal_4:
+`ansatz=TwoLocal(4, ['ry','cx'], 'cz', 'circular', reps=1, insert_barriers=True)
+ansatz.decompose().draw("mpl", style="iqx")`
+![image](https://user-images.githubusercontent.com/53739684/186074672-2fd71516-05e3-4462-a890-4184ec962819.png)
+![image](https://user-images.githubusercontent.com/53739684/186074780-cc0a9e99-ad3a-4f18-9dab-8eedeb2fa2e4.png)
+
+TwoLocal_5:
+'ansatz=TwoLocal(4, ['ry','rx','rz'], 'cz', 'circular', reps=1, insert_barriers=True)
+ansatz.decompose().draw("mpl", style="iqx")'
+![image](https://user-images.githubusercontent.com/53739684/186074873-1ca1e437-0a7d-40b8-85d0-a206e6cf61c8.png)
+![image](https://user-images.githubusercontent.com/53739684/186074888-a6dfed21-1274-4681-aa76-a16dfd831bf6.png)
+
+PauliTwo:
+`ansatz=PauliTwoDesign(num_qubits=4, reps=2, seed=None, insert_barriers=True, name='PauliTwoDesign')
+ansatz.decompose().draw("mpl", style="iqx")`
+![image](https://user-images.githubusercontent.com/53739684/186074959-0970e932-ceca-43e9-9a52-60d646a13297.png)
+![image](https://user-images.githubusercontent.com/53739684/186074976-ddfb1ac0-a0eb-4a88-925c-407a127bd1f3.png)
+
+
+
+
