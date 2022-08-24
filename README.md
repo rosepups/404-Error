@@ -313,7 +313,8 @@ The job was then submitted:
 runtime_vqe_result = runtime_vqe_groundstate_solver.solve(problem)`
 
 Output:
-![image](https://user-images.githubusercontent.com/53739684/186069487-94ee5f61-5cf4-4934-a447-f0a18ff318cf.png)
+Nairobi: ![image](https://user-images.githubusercontent.com/111412305/186309624-b342b6da-42ee-4344-9f7d-19207326d429.png)
+
 
 
 # Compare different BackEnds with the NumPy reference value
