@@ -2,7 +2,7 @@
 
 # Creating Li-H Hamiltonian
 
-1. Firstly need to create the Hatree Fock initial state. In this code the LiH molecule was created with a bond distance of 2.5 angstrom in the single state with no charge
+Firstly we need to create the Hatree Fock initial state. In this code the LiH molecule was created with a bond distance of 2.5 angstrom in the single state with no charge
 
 ```
 from qiskit_nature.drivers import UnitsType, Molecule
@@ -14,7 +14,6 @@ molecule = Molecule(
 driver = ElectronicStructureMoleculeDriver(
     molecule, basis="sto3g", driver_type=ElectronicStructureDriverType.PYSCF)
    ```
- 2.
  The below code prints out the Hamiltonian from above into terms of fermionic operators. 
  
  `es_problem = ElectronicStructureProblem(driver)
@@ -25,7 +24,8 @@ Output:
 
 ![image](https://user-images.githubusercontent.com/53739684/186053064-24b2a871-898c-4a15-b661-3f62649dd6d5.png)
 
-3. To run on the quantum computer we need to change it from fermionic operators to spin operators. The Jordan-Wigner Mapper was used. 
+
+To run on the quantum computer we need to change it from fermionic operators to spin operators. The Jordan-Wigner Mapper was used. 
 
 ```
 qubit_converter = QubitConverter(mapper=JordanWignerMapper())
@@ -33,7 +33,7 @@ qubit_op = qubit_converter.convert(second_q_op["ElectronicEnergy"])
 print(qubit_op)
 ```
 
-4. To decrease the number of qubits from 12 to 10, the Parity Mapper is used. This is able to remove 2 qubits by exploiting known symmetries arising from the mapping
+To decrease the number of qubits from 12 to 10, the Parity Mapper is used. This is able to remove 2 qubits by exploiting known symmetries arising from the mapping
 ```
 qubit_converter = QubitConverter(mapper=ParityMapper(), two_qubit_reduction=True)
 qubit_op = qubit_converter.convert(
@@ -43,7 +43,7 @@ print(qubit_op)
 
 # Hamiltonian Optimization
 
-5. Then use a set of optimisers for comparison. The iterations were increased until it was shown that all the optimisers converged. Many optimisers were investigated including BOBYQA, IMFIL, SNOBFIT, COBYLA, L_BFGS_B, SLSQP, CG, ADAM
+We compared the optimizers available on qiskit.algorithms.optimizers. The optimizer iterations were increased until it was shown that all the optimisers converged. Many optimisers were investigated including BOBYQA, IMFIL, SNOBFIT, COBYLA, L_BFGS_B, SLSQP, CG, ADAM
 
 Is this code COBYLA, L_BFGS_B, SLSQP and CG were compared. The max iterations was changed until clear convergence could be seen. The other optimisers gained undesirable results therefore were not 
 
@@ -76,8 +76,7 @@ Output:
 ![image](https://user-images.githubusercontent.com/53739684/186298044-f9b0d646-ac4f-4ad1-a14f-eb3593a13fa2.png)
 
 
-
-6. NumPyMinimumEigensolver is used to computer a reference value of the LiH (this uses our Hamiltonian which was made in the first step)
+NumPyMinimumEigensolver is used to computer a reference value of the LiH (this uses our Hamiltonian which was made in the first step)
 
 ```
 npme = NumPyMinimumEigensolver()
@@ -102,12 +101,13 @@ pylab.legend(loc='upper right');
 ```
 
 Output:
-This graph shows the different from the reference value. It can be seem that COBYLA although converged early did not gain the results closest to the reference. In fact the CG (red) was found to gain the best results with the smallest difference. It should be noted however that it did take a long time to reach that covergence. 
+This graph shows the different from the reference value. It can be seem that COBYLA(blue) although converged early did not gain the results closest to the reference. In fact the CG (red) was found to gain the best results with the smallest difference. It should be noted however that COBYLA did take a long time (4000 iterations) to reach that covergence. 
 
 ![image](https://user-images.githubusercontent.com/53739684/186298054-19e34ad3-27c6-4a8f-92d0-4e4a94d86556.png)
 
+# Noise
 
-The next step was using the Qiskit Aer to run a simulation with noise. For a comparison we firstly looked at the results without noise and then looked at the results with noise.
+The next step was using the Qiskit Aer to run a simulation with noise on the Hamiltonian. For a comparison we firstly looked at the results without noise and then looked at the results with noise.
 ```
 seed = 170
 iterations = 4000
