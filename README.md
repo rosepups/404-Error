@@ -1,4 +1,21 @@
 # 404-Error
+**Team Members:**__
+**Jessica Jein White: **
+email: jessica.white3@griffithuni.edu.au
+GitHub: jein55
+Discord ID: doublej#8638
+
+**Rose Manakil**
+email: rose.manakil@griffithuni.edu.au
+GitHub: rosepups
+Discord ID: kuro_chan2356#6896
+
+**Peter Collins **
+email: peetahjohn@gmail.com
+GitHub ID: PeterJC98
+Discord ID: PeterJC#5601
+
+**Pitch Presenter: Peter Collins**
 
 # Creating Li-H Hamiltonian
 
@@ -226,7 +243,7 @@ print("Energy:", target_energy)
 Output: ![image](https://user-images.githubusercontent.com/53739684/186067264-80dcf412-c034-476b-99c8-d3dee92f0326.png)
 
 
-The ansatz was then created using the circuit library EfficientSU2. Different ansatz were investigated including TwoLocal and PauliGate
+The ansatz was then created using the circuit library EfficientSU2. Different ansatz were investigated including TwoLocal and PauliGate (refer to _Looking at different ansatz and the impact of results on local VQE_)
 
 ```
 ansatz = EfficientSU2(4, su2_gates=['rx', 'cx'], entanglement='circular', reps=1)
@@ -284,7 +301,7 @@ print(
  Output:
  ![image](https://user-images.githubusercontent.com/53739684/186069130-f057b72a-26a9-4b02-b4a2-62b24dc07dcb.png)
     
- Now the code is ran on a real backend. In this code it was run on the ibm_oslo. However, the code was also investigated on multiple different backends.
+Now the code is ran on a real backend. This code was run on 5 different IBM backends, and at this time the ibmq_belem was the closest to the reference value (refer to next section _Comparing different BackEnds with the NumPy reference value_ for more)
     
 ```
 from qiskit import IBMQ
@@ -313,30 +330,24 @@ The job was then submitted:
 runtime_vqe_result = runtime_vqe_groundstate_solver.solve(problem)`
 
 Output:
-Nairobi: ![image](https://user-images.githubusercontent.com/111412305/186309624-b342b6da-42ee-4344-9f7d-19207326d429.png)
+
+ibmq_belem: ![Belm-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310360-be2e5de0-45c5-4441-ae15-f2f702451c13.png)
 
 
+# Comparing different BackEnds with the NumPy reference value
 
-# Compare different BackEnds with the NumPy reference value
-
-These backends were investigated. It is interesting to see that Nairobi gained the best results to the reference value. We noticed that this would change throughout the day due to the error of the CNOTs changing in each of the quantum backends throughout. Therefore we can say at this particular time Nairobi was the best, however this may change if run the job again several hours later.
+These backends were investigated. It is interesting to see that Belem gained the best results to the reference value. We noticed that this would change throughout the day due to the error of the CNOTs changing in each of the quantum backends throughout. Therefore we can say at this particular time Belem was the best, however this has be known to change with time (in previous runs Nairobi was better).
 
 Reference Value:
 ![image](https://user-images.githubusercontent.com/53739684/186071772-d50d9cb0-7c50-4ba6-8a0d-5a7d3ac764fa.png)
 
-Oslo:
-![image](https://user-images.githubusercontent.com/53739684/186071888-88858971-0bd7-48c9-9ce2-fc3d84154fd0.png)
+ibm_nairobi: ![Nairobi-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310399-e6f8cb38-ab0e-43ef-ab6d-77606742a1e2.png)
+ibmq_belem: ![Belm-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310360-be2e5de0-45c5-4441-ae15-f2f702451c13.png)
+ibm_oslo: ![Oslo-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310486-6bfa7156-4e44-46ad-9f3c-969d952e63c4.png)
+ibmq_quito: ![Quito-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310545-7c8c406b-1c47-4a62-8a1f-e30b0355945b.png)
+ibmq_lima: ![Lima-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310590-d1a40b7f-13b5-43ad-891c-c2f1643f9d67.png)
 
-Quito:
-![image](https://user-images.githubusercontent.com/53739684/186072014-575355c6-cf2d-459e-bbff-fd2ae354e462.png)
-
-Nairobi:
-![image](https://user-images.githubusercontent.com/53739684/186072138-6d654c95-0a05-47b0-8024-75af83a0c2ae.png)
-
-Lima:
-![image](https://user-images.githubusercontent.com/53739684/186072183-73ab5faf-95fe-4ece-83e4-2864892ee2c3.png)
-
-# Look at different ansatz and the impact of results on local VQE
+# Looking at different ansatz and the impact of results on local VQE
 
 Different ansatz values were investigated against the reference value. It was found that the EssentialSU2_2 gained the best results out of all the ansatz investigated in this study. It is interesting to see the impact of gates on the final value.
 
@@ -431,6 +442,24 @@ PauliTwo:
 ansatz.decompose().draw("mpl", style="iqx")`
 ![image](https://user-images.githubusercontent.com/53739684/186074959-0970e932-ceca-43e9-9a52-60d646a13297.png)
 ![image](https://user-images.githubusercontent.com/53739684/186074976-ddfb1ac0-a0eb-4a88-925c-407a127bd1f3.png)
+
+# Ansatz Circuit Optimization
+Like with the Hamiltonian Optimizers different optimizers were tested for the Ansatz circuit, and found to be different then the hamiltonian optimizers.
+We compared the optimizers available on qiskit.algorithms.optimizers, all with 100 iterations. Many optimisers were investigated including COBYLA, L_BFGS_B, SLSQP, CG, ADAM.
+
+Again the refernce value is: ![image](https://user-images.githubusercontent.com/53739684/186071772-d50d9cb0-7c50-4ba6-8a0d-5a7d3ac764fa.png)
+
+The optimizers that estimated closest to the refernce value were considered, which were:
+COBYLA: ![COBYLA-100](https://user-images.githubusercontent.com/111412305/186312146-ef3ed60d-a468-404d-80b3-f266a3d527a7.png)
+SPSA: ![SPSA-100](https://user-images.githubusercontent.com/111412305/186312187-113d2bbe-1478-49e2-a6fd-b098a5e114ee.png)
+
+Others weren't as successful, as seen below:
+SLSQP: ![SLSQP-100](https://user-images.githubusercontent.com/111412305/186312771-5ba40fe3-7358-4dbe-ae93-a0d50c35dcba.png)
+L_BFGS_B: ![L_BFGS_B-100](https://user-images.githubusercontent.com/111412305/186312888-aae8c492-d499-4a59-b320-a698911f10b1.png)
+CG: ![CG-100](https://user-images.githubusercontent.com/111412305/186313101-249b91a3-82fe-4c28-9d4a-2db025e69fa8.png)
+ADAM: ![ADAM-100](https://user-images.githubusercontent.com/111412305/186313284-5ba29e54-de14-48a4-8ef3-66cab8447d25.png)
+
+
 
 
 
