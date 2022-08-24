@@ -1,5 +1,6 @@
 # 404-Error
 
+# Creating Li-H Hamiltonian
 
 1. Firstly need to create the Hatree Fock initial state. In this code the LiH molecule was created with a bond distance of 2.5 angstrom in the single state with no charge
 
@@ -39,6 +40,8 @@ qubit_op = qubit_converter.convert(
     second_q_op["ElectronicEnergy"], num_particles=es_problem.num_particles)
 print(qubit_op)
 ```
+
+# Hamiltonian Optimization
 
 5. Then use a set of optimisers for comparison. The iterations were increased until it was shown that all the optimisers converged. Many optimisers were investigated including BOBYQA, IMFIL, SNOBFIT, COBYLA, L_BFGS_B, SLSQP, CG, ADAM
 
