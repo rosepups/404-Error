@@ -3,7 +3,7 @@
 ## Team Members:
 
 
-**Jessica Jein White:**
+_**Jessica Jein White:**_
 
 email: jessica.white3@griffithuni.edu.au
 
@@ -13,7 +13,7 @@ Discord ID: doublej#8638
 
 
 
-**Rose Manakil**
+_**Rose Manakil:**_
 
 email: rose.manakil@griffithuni.edu.au
 
@@ -22,7 +22,8 @@ GitHub: rosepups
 Discord ID: kuro_chan2356#6896
 
 
-**Peter Collins**
+
+_**Peter Collins:**_
 
 email: peetahjohn@gmail.com
 
