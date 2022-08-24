@@ -1,6 +1,6 @@
-## 404-Error
+# 404-Error
 
-# Team Members:
+## Team Members:
 
 
 **Jessica Jein White:**
@@ -33,7 +33,7 @@ Discord ID: PeterJC#5601
 
 **Pitch Presenter: Peter Collins**
 
-# Creating Li-H Hamiltonian
+## Creating Li-H Hamiltonian
 
 Firstly we need to create the Hatree Fock initial state. In this code the LiH molecule was created with a bond distance of 2.5 angstrom in the single state with no charge
 
@@ -74,7 +74,7 @@ qubit_op = qubit_converter.convert(
 print(qubit_op)
 ```
 
-# Hamiltonian Optimization
+## Hamiltonian Optimization
 
 We compared the optimizers available on qiskit.algorithms.optimizers. The optimizer iterations were increased until it was shown that all the optimisers converged. Many optimisers were investigated including BOBYQA, IMFIL, SNOBFIT, COBYLA, L_BFGS_B, SLSQP, CG, ADAM
 
@@ -138,7 +138,7 @@ This graph shows the different from the reference value. It can be seem that COB
 
 ![image](https://user-images.githubusercontent.com/53739684/186298054-19e34ad3-27c6-4a8f-92d0-4e4a94d86556.png)
 
-# Noise
+## Noise
 
 The next step was using the Qiskit Aer to run a simulation with noise on the Hamiltonian. For a comparison we firstly looked at the results without noise and then looked at the results with noise.
 ```
@@ -218,7 +218,7 @@ The graph is then drawn showing convergence with noise
 ![image](https://user-images.githubusercontent.com/53739684/186299603-a1278691-e26d-4e62-a151-9f7e96a18bbf.png)
 
 
-# Use real BackEnds
+## Use real BackEnds
 The next step after that was using actual backends. Because the backends were limited to only 5 or 7 qubits we had to use another method which doesn't consider our Hartree Fock operator. Instead we just used the EssentialSU2 and managed to reduce it to 4 qubits so it could be run on all the free quantum computers. Once again the LiH was set up with a bond distance of 2.5. 
 
 Therefore we went through the process again of testing the optimisers to the reference value. This is because the reference value changed in this case as our Hamiltonian operator is not considered. It was found that SPSA gained the best results in this regard and therefore was used as the main operator.
@@ -350,7 +350,7 @@ Output:
 ibmq_belem: ![Belm-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310360-be2e5de0-45c5-4441-ae15-f2f702451c13.png)
 
 
-# Comparing different BackEnds with the NumPy reference value
+## Comparing different BackEnds with the NumPy reference value
 
 These backends were investigated. It is interesting to see that Belem gained the best results to the reference value. We noticed that this would change throughout the day due to the error of the CNOTs changing in each of the quantum backends throughout. Therefore we can say at this particular time Belem was the best, however this has be known to change with time (in previous runs Nairobi was better).
 
@@ -369,7 +369,7 @@ ibmq_quito: ![Quito-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubu
 ibmq_lima: ![Lima-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310590-d1a40b7f-13b5-43ad-891c-c2f1643f9d67.png)
 
 
-# Looking at different ansatz and the impact of results on local VQE
+## Looking at different ansatz and the impact of results on local VQE
 
 Different ansatz values were investigated against the reference value. It was found that the EssentialSU2_2 gained the best results out of all the ansatz investigated in this study. It is interesting to see the impact of gates on the final value.
 
@@ -465,7 +465,7 @@ ansatz.decompose().draw("mpl", style="iqx")`
 ![image](https://user-images.githubusercontent.com/53739684/186074959-0970e932-ceca-43e9-9a52-60d646a13297.png)
 ![image](https://user-images.githubusercontent.com/53739684/186074976-ddfb1ac0-a0eb-4a88-925c-407a127bd1f3.png)
 
-`# Ansatz Circuit Optimization
+`## Ansatz Circuit Optimization
 Like with the Hamiltonian Optimizers different optimizers were tested for the Ansatz circuit, and found to be different then the hamiltonian optimizers.
 We compared the optimizers available on qiskit.algorithms.optimizers, all with 100 iterations. Many optimisers were investigated including COBYLA, L_BFGS_B, SLSQP, CG, ADAM.
 
