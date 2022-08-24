@@ -173,7 +173,7 @@ The energy values are then graphed during the convergence as shown below
 The next step is adding the noise. Mock backends were used in this case as we were not able to access the quantum computers above 7 qubits. However we wanted to see what the result could be if used those backends from real noise data. In this case the FakeSydney and FakeCairo backend were used.
 
 ```
-iimport os
+import os
 from qiskit.providers.aer import QasmSimulator
 from qiskit.providers.aer.noise import NoiseModel
 from qiskit.test.mock import FakeCairo
@@ -325,7 +325,7 @@ from qiskit import IBMQ
 IBMQ.load_account()
 provider = IBMQ.get_provider(hub='ibm-q')  # replace by your runtime provider
 
-backend = provider.get_backend("ibm_oslo")  # select a backend that supports the runtime
+backend = provider.get_backend("ibmq_belem")  # select a backend that supports the runtime
 
 from qiskit_nature.runtime import VQEClient
 runtime_vqe = VQEClient(
@@ -348,7 +348,7 @@ runtime_vqe_result = runtime_vqe_groundstate_solver.solve(problem)`
 Output:
 
 ibmq_belem: ![Belm-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310360-be2e5de0-45c5-4441-ae15-f2f702451c13.png)
-
+Belem was found to gain the best results compared to the reference value.
 
 ## Comparing different BackEnds with the NumPy reference value
 
