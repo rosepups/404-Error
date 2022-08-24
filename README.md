@@ -488,9 +488,31 @@ CG: ![CG-100](https://user-images.githubusercontent.com/111412305/186313101-249b
 
 ADAM: ![ADAM-100](https://user-images.githubusercontent.com/111412305/186313284-5ba29e54-de14-48a4-8ef3-66cab8447d25.png)
 
+The code was run through the backends with both optimizers, SPSA(maxtier=100), COBYLA(maxiter=4000), results shown below
 
+**SPSA(maxtier=100):**
 
+ibm_nairobi: ![Nairobi-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310399-e6f8cb38-ab0e-43ef-ab6d-77606742a1e2.png)
 
+ibmq_belem: ![Belm-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310360-be2e5de0-45c5-4441-ae15-f2f702451c13.png)
+
+ibm_oslo: ![Oslo-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310486-6bfa7156-4e44-46ad-9f3c-969d952e63c4.png)
+
+ibmq_quito: ![Quito-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310545-7c8c406b-1c47-4a62-8a1f-e30b0355945b.png)
+
+ibmq_lima: ![Lima-EssentialSU2_2_ANSATZ--SPSA-100](https://user-images.githubusercontent.com/111412305/186310590-d1a40b7f-13b5-43ad-891c-c2f1643f9d67.png)
+
+**COBYLA(maxiter=4000)**
+
+ibm_nairobi: ![Nairobi-EssentialSU2_2_ANSATZ--COBYLA-4000](https://user-images.githubusercontent.com/111412305/186324174-d999a7ea-2ed6-4f6b-90db-d2198ac28b92.png)
+
+ibmq_belem: ![Belm-EssentialSU2_2_ANSATZ--COBYLA-4000](https://user-images.githubusercontent.com/111412305/186324232-07892038-f024-4090-9592-52bec5ae67d4.png)
+
+ibm_oslo:  ![Oslo-EssentialSU2_2_ANSATZ--COBYLA-4000](https://user-images.githubusercontent.com/111412305/186324290-ad92cbbf-f9c1-448a-ac71-471ccba29343.png)
+
+ibmq_lima: ![Lima-EssentialSU2_2_ANSATZ--COBYLA-4000](https://user-images.githubusercontent.com/111412305/186324356-2ab81cd1-d62a-40e7-9aa2-15bd62fa384f.png)
+
+From the results it can be seen that SPSA is the better optimizer, as results are closer to the reference value.
 
 
 
