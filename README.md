@@ -1,9 +1,9 @@
-# 404-Error
+## 404-Error
 
-Team Members:
+#Team Members:
 
 
-Jessica Jein White:
+**Jessica Jein White:**
 
 email: jessica.white3@griffithuni.edu.au
 
@@ -13,7 +13,7 @@ Discord ID: doublej#8638
 
 
 
-Rose Manakil
+**Rose Manakil**
 
 email: rose.manakil@griffithuni.edu.au
 
@@ -22,7 +22,7 @@ GitHub: rosepups
 Discord ID: kuro_chan2356#6896
 
 
-Peter Collins
+**Peter Collins**
 
 email: peetahjohn@gmail.com
 
@@ -31,7 +31,7 @@ GitHub ID: PeterJC98
 Discord ID: PeterJC#5601
 
 
-Pitch Presenter: Peter Collins
+**Pitch Presenter: Peter Collins**
 
 # Creating Li-H Hamiltonian
 
