@@ -465,7 +465,7 @@ ansatz.decompose().draw("mpl", style="iqx")`
 ![image](https://user-images.githubusercontent.com/53739684/186074959-0970e932-ceca-43e9-9a52-60d646a13297.png)
 ![image](https://user-images.githubusercontent.com/53739684/186074976-ddfb1ac0-a0eb-4a88-925c-407a127bd1f3.png)
 
-`
+
 ## Ansatz Circuit Optimization
 Like with the Hamiltonian Optimizers different optimizers were tested for the Ansatz circuit, and found to be different then the hamiltonian optimizers.
 We compared the optimizers available on qiskit.algorithms.optimizers, all with 100 iterations. Many optimisers were investigated including COBYLA, L_BFGS_B, SLSQP, CG, ADAM.
