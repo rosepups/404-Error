@@ -10,8 +10,7 @@ email: jessica.white3@griffithuni.edu.au
 GitHub: jein55
 
 Discord ID: doublej#8638
-
-
+\
 
 _**Rose Manakil:**_
 
@@ -20,8 +19,7 @@ email: rose.manakil@griffithuni.edu.au
 GitHub: rosepups
 
 Discord ID: kuro_chan2356#6896
-
-
+\
 
 _**Peter Collins:**_
 
